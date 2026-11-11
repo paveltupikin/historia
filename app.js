@@ -204,8 +204,6 @@ function answer(choice,skip=false){
  $('#feedback').innerHTML=`<div class="feedback-copy"><strong>${correct?'Верно. +'+earned+' XP':skip?'Запомним.':'Почти. Запомним ответ.'}</strong><p>${explanation}</p><p class="source">${esc(q.source)}</p></div><button class="primary" id="next">Дальше →</button>`;
  renderTrack();
  $('#next').focus({preventScroll:true});
- // верный ответ — карточка уходит сама; ошибка — ждём, пока прочитают
- if(correct&&q.mode!=='order')autoTimer=setTimeout(advance,900);
 }
 
 // ---------- База знаний ----------
