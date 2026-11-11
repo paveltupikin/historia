@@ -168,9 +168,6 @@ function renderTrack(){}
 const prompts={date:['ДАТА → СОБЫТИЕ','Что произошло в это время?'],event:['СОБЫТИЕ → ДАТА','Когда это произошло?'],people:['ИСТОРИЧЕСКИЕ ЛИЧНОСТИ','О ком идёт речь?'],terms:['ТЕРМИНЫ','Как называется это понятие?'],laws:['ЗАКОНЫ И РЕФОРМЫ','Когда произошло это изменение?'],rebels:['ВОССТАНИЯ И ИТОГИ','Чем закончилось это выступление?'],order:['ХРОНОЛОГИЯ','Расположите события от раннего к позднему.']};
 function renderCard(){
  answered=false;
- $('#round-label').textContent=reviewing?'Повторение ошибок':modes.find(x=>x[0]===mode)[1];
- $('#round-index').textContent=String(results.length+(queue.length?1:0)).padStart(2,'0');
- $('.round-meta .muted').textContent=reviewing?'/ '+(results.length+queue.length):'/ ∞';
  renderTrack();
  if(!queue.length){
   const done=reviewing&&results.length;
