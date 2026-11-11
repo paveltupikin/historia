@@ -156,8 +156,6 @@ function updateStats(){
  $('#total-xp').textContent=progress.xp;$('#streak').textContent=streak;
  $('#correct-count').textContent=results.filter(Boolean).length;$('#wrong-count').textContent=results.filter(x=>!x).length;
  $('#round-xp').textContent='+'+roundXp;$('#error-count').textContent=due().length;
- const daily=progress.days[today()]||0;$('#daily-count').textContent=daily+' / 20';$('#daily-bar').style.width=Math.min(100,daily/20*100)+'%';
- $('#daily-caption').textContent=daily>=20?'Цель выполнена. Отличный ритм.':'20 ответов — ещё один шаг.';
 }
 const titles={mix:'История',date:'События',event:'Даты',people:'Личности',terms:'Понятия',laws:'Реформы',rebels:'Восстания',order:'Хронология'};
 function renderTitle(){$('#page-title').innerHTML=esc(view==='library'?'База знаний':reviewing?'Повторение':titles[mode])+'<span>.</span>';}
@@ -166,10 +164,7 @@ function renderModes(){
  $('#modes').innerHTML=modes.map(([id,label,icon])=>{const n=id==='order'?yearRows.filter(allowedRow).length:poolFor(id).length;return `<button class="mode ${id===mode&&!reviewing?'active':''}" data-mode="${id}" aria-pressed="${id===mode&&!reviewing}"><span class="mode-icon" aria-hidden="true">${icon}</span><span>${label}</span><span class="mode-number">${n.toLocaleString('ru')}</span></button>`;}).join('');
  $('#review').classList.toggle('active',reviewing);
 }
-function renderTrack(){
- const last=results.slice(-10);
- $('#round-track').innerHTML=[...last.map(r=>`<i class="${r?'correct':'wrong'}"></i>`),...(queue.length?['<i class="current"></i>']:[]),...Array(Math.max(0,10-last.length)).fill('<i></i>')].join('');
-}
+function renderTrack(){}
 const prompts={date:['ДАТА → СОБЫТИЕ','Что произошло в это время?'],event:['СОБЫТИЕ → ДАТА','Когда это произошло?'],people:['ИСТОРИЧЕСКИЕ ЛИЧНОСТИ','О ком идёт речь?'],terms:['ТЕРМИНЫ','Как называется это понятие?'],laws:['ЗАКОНЫ И РЕФОРМЫ','Когда произошло это изменение?'],rebels:['ВОССТАНИЯ И ИТОГИ','Чем закончилось это выступление?'],order:['ХРОНОЛОГИЯ','Расположите события от раннего к позднему.']};
 function renderCard(){
  answered=false;
